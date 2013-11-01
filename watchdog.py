@@ -1,4 +1,5 @@
 import xbmc
+from subprocess import call
 
 class MyPlayer(xbmc.Player):
 
@@ -19,10 +20,7 @@ class MyPlayer(xbmc.Player):
 		    self.player_is_playing = False
             
     def changeGovernor(self,newGovernor='ondemand'):
-        gov = open("/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor", "w")
-        gov.write(newGovernor)
-        gov.close()
-
+        call(["sudo","cpupower frequency-set -g "+newGovernor]
 
 player = MyPlayer()
 
